@@ -7,6 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(reshape2)
 library(plotly)
+library(scales)
 #library(maps)
 
 #Malaysia <- map_data("world") %>% filter(region == "Malaysia")
@@ -234,10 +235,10 @@ ui <- dashboardPage(
     
     fluidRow(
       # A static value Box
-      valueBox("2,078","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("8","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("1,402","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("20,522","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("2,340","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("11","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("1,910","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("21,687","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
     ),
    
     
@@ -837,7 +838,7 @@ server <- function(input,output){
   output$sarawakDistrict <- renderPlotly({
     sarawakDist <- ggplot(data=sarawak_district , aes(x= `District`, y = `14 Day Total`))+
       geom_bar(stat = "identity", color = "blue")+
-      theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+
+      theme(axis.text.x =element_text(angle=90,hjust=1,vjust=0.5))+
       theme_minimal()
     
     sarawakDist
