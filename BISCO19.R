@@ -235,10 +235,10 @@ ui <- dashboardPage(
     
     fluidRow(
       # A static value Box
-      valueBox("2,875","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("7","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("2,541","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("22,014","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("2,776","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("13","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("1,803","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("24,713","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
     ),
    
     
