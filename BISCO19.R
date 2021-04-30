@@ -8,6 +8,7 @@ library(ggplot2)
 library(reshape2)
 library(plotly)
 library(scales)
+library(ggpubr)
 #library(maps)
 
 #Malaysia <- map_data("world") %>% filter(region == "Malaysia")
@@ -197,6 +198,8 @@ sarawak = fetch (rs32, n= -1)
 # Avoid all scientific notation
 options(scipen=999)
 
+
+
 ui <- dashboardPage(
   skin = "yellow",
   dashboardHeader(title = "Covid-19 Malaysia Dashboard",
@@ -275,6 +278,14 @@ ui <- dashboardPage(
                 box(title = "State Daily Cases",background = "blue" , solidHeader = TRUE,
                     collapsible = TRUE,
                     plotlyOutput("linestate"))
+              ),
+              
+              fluidRow(
+                tabItem("home",
+                        box(title = "Correlation Analysis between Daily Confirmed and Daily Deaths Cases in Malaysia",
+                            background = "green", solidHeader = TRUE,
+                            collapsible = TRUE,
+                            plotlyOutput("correlationGraph"))),
               ),
               
               
@@ -535,26 +546,33 @@ server <- function(input,output){
   
   # Total Cases 
   output$lineChart <- renderPlotly({
+    datatable$Date <- as.Date(datatable$Date)
     
-    p <- ggplot(data=datatable, aes(x= `Date`, y= `Total Cases`, group=1))+
+    p <- ggplot(data=datatable, aes(x= Date, y= `Total Cases`, group=1))+
       geom_line(color = 'lightyellow')+
       geom_point()+
+      scale_x_date(labels = date_format("%m-%Y"))+
       ylab("Total Cases")+
       xlab("Date")
     
+    
     p<- ggplotly(p)
     p
+    
+   
   })
   
   #Daily Cases
   output$lineChart2 <- renderPlotly({
     
-    ggplot(data=datatable, aes(x= `Date`, y= `Daily New Cases`, group=1))+
-      #geom_bar(stat = "identity", color = "blue")+
-      #theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+    datatable$Date <- as.Date(datatable$Date)
+    
+    ggplot(data=datatable, aes(x= Date, y= `Daily New Cases`, group=1))+
+      geom_line(stat = "identity") +
       geom_line()+
       geom_point(colour = 'red')+
       theme_bw()+
+      scale_x_date(labels = date_format("%m-%Y"))+
       ylab("Daily New Cases")+
       xlab("Date")
     
@@ -564,9 +582,12 @@ server <- function(input,output){
   #Active Cases
   output$lineChart3 <- renderPlotly({
     
-    p2 <- ggplot(data=datatable, aes(x= `Date`, y= `Active Cases`, group=1))+
+    datatable$Date <- as.Date(datatable$Date)
+    
+    p2 <- ggplot(data=datatable, aes(x= Date, y= `Active Cases`, group=1))+
       geom_line(color = "salmon1")+
       geom_point(color="lightpink4")+
+      scale_x_date(labels = date_format("%m-%Y"))+
       ylab("Active Cases")+
       xlab("Date")
     
@@ -578,9 +599,12 @@ server <- function(input,output){
   #Total Deaths
   output$lineChart4 <- renderPlotly({
     
-    p3 <- ggplot(data=datatable, aes(x= `Date`, y= `Total Deaths`, group=1))+
+    datatable$Date <- as.Date(datatable$Date)
+    
+    p3 <- ggplot(data=datatable, aes(x= Date, y= `Total Deaths`, group=1))+
       geom_line(linetype = "dashed")+
       geom_point()+
+      scale_x_date(labels = date_format("%m-%Y"))+
       ylab("Total Deaths")+
       xlab("Date")
     
@@ -592,10 +616,13 @@ server <- function(input,output){
   #Daily Deaths
   output$lineChart5 <- renderPlotly({
     
-    ggplot(data=datatable, aes(x= `Date`, y=`Daily Deaths`, group = 1))+
+    datatable$Date <- as.Date(datatable$Date)
+    
+    ggplot(data=datatable, aes(x= Date, y=`Daily Deaths`, group = 1))+
       geom_line()+
       geom_point(color = "turquoise")+
       theme_bw()+
+      scale_x_date(labels = date_format("%m-%Y"))+
       xlab("State")+
       ylab("Total Confirmed Cases")
     
@@ -605,27 +632,30 @@ server <- function(input,output){
   
   #State
   output$linestate <- renderPlotly({
+    
+    daily_state_cases_table$Date <- as.Date(daily_state_cases_table$Date)
     color_group <- c("red","blue","green","orange","sky blue","tomato","snow","tan","ivory","lightsalmon","orchid4","indianred3","mintcream","palevioletred","linen","rosybrown4")
     
     ggplot() + 
-      geom_line(data = daily_state_cases_table,aes(x = `Date`, y= `Perlis`, group = 1), color = "red") + 
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Kedah`, group = 1), color="blue") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Pulau_Pinang`, group = 1), color="green") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Perak`, group = 1), color="orange") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Selangor`, group = 1), color="sky blue") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Negeri Sembilan`, group = 1), color="tomato") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Melaka`, group = 1), color="snow") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Johor`, group = 1), color="tan") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Pahang`, group = 1), color="ivory") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Terengganu`, group = 1), color="lightsalmon") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Kelantan`, group = 1), color="orchid4") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Sabah`, group = 1), color="indianred3") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `Sarawak`, group = 1), color="mintcream")+
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `WP_Kuala_Lumpur`, group = 1), color="palevioletred")+
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `WP_Putrajaya`, group = 1), color="linen") +
-      geom_line(data = daily_state_cases_table,aes(x = `Date`,y = `WP_Labuan`, group = 1), color="rosybrown4") +
+      geom_line(data = daily_state_cases_table,aes(x = Date, y= `Perlis`, group = 1), color = "red") + 
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Kedah`, group = 1), color="blue") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Pulau_Pinang`, group = 1), color="green") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Perak`, group = 1), color="orange") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Selangor`, group = 1), color="sky blue") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Negeri Sembilan`, group = 1), color="tomato") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Melaka`, group = 1), color="snow") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Johor`, group = 1), color="tan") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Pahang`, group = 1), color="ivory") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Terengganu`, group = 1), color="lightsalmon") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Kelantan`, group = 1), color="orchid4") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Sabah`, group = 1), color="indianred3") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `Sarawak`, group = 1), color="mintcream")+
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `WP_Kuala_Lumpur`, group = 1), color="palevioletred")+
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `WP_Putrajaya`, group = 1), color="linen") +
+      geom_line(data = daily_state_cases_table,aes(x = Date,y = `WP_Labuan`, group = 1), color="rosybrown4") +
       geom_point()+
       theme_classic()+
+      scale_x_date(labels = date_format("%m-%Y"))+
       xlab("Day")+
       ylab("State")+
       
@@ -646,6 +676,19 @@ server <- function(input,output){
     
   })
   
+  # correlation analysis
+  output$correlationGraph <- renderPlotly({
+    
+    ggscatter(data = datatable,x = aes(x=`Daily New Cases`, y =`Daily Deaths`), 
+              add = "reg.line",                               
+              conf.int = TRUE,                                  
+              add.params = list(color = "blue",
+                                fill = "lightgray"))+
+      stat_cor(method = "pearson", label.x = 3, label.y = 30) 
+    
+  })
+  
+  # State Cases in Daily 
   output$state_cases <- renderDataTable(
     state_cases_table
   )
