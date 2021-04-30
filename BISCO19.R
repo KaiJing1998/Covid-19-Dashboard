@@ -194,6 +194,8 @@ sarawak = fetch (rs32, n= -1)
 #View(sarawak_district)
 #View(sarawak)
 
+# Avoid all scientific notation
+options(scipen=999)
 
 ui <- dashboardPage(
   skin = "yellow",
@@ -628,8 +630,7 @@ server <- function(input,output){
       ylab("State")+
       
       scale_colour_manual(values = color_group)+
-      labs(colour = "State")+
-      ggtitle("Comfirmed Cases by State")
+      labs(colour = "State")
     
   })
   
@@ -637,8 +638,7 @@ server <- function(input,output){
   output$stateBarGraph <- renderPlotly({
     stateBar <- ggplot(data = state_cases_table, aes(x= `State`, y = `Confirmed`)) +
       geom_bar(stat = "identity", color = "bisque3", fill="blue4" )+
-      theme_minimal()+
-      #xlab("State") +
+      theme()+
       ylab("Total Confirmed Cases")
     
     stateBar
