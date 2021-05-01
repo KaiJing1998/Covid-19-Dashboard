@@ -198,8 +198,6 @@ sarawak = fetch (rs32, n= -1)
 # Avoid all scientific notation
 options(scipen=999)
 
-
-
 ui <- dashboardPage(
   skin = "yellow",
   dashboardHeader(title = "Covid-19 Malaysia Dashboard",
@@ -274,22 +272,21 @@ ui <- dashboardPage(
                             collapsible = TRUE,
                             plotlyOutput("stateBarGraph"))),
                 
-                
-                box(title = "State Daily Cases",background = "blue" , solidHeader = TRUE,
+                box(title = "Correlation Analysis between Daily Confirmed and Daily Deaths Cases in Malaysia",
+                    background = "green", solidHeader = TRUE,
                     collapsible = TRUE,
-                    plotlyOutput("linestate"))
+                    plotlyOutput("correlationGraph"))
+                
+                
+               
               ),
               
-              fluidRow(
+              br(),
+              
+             
                 tabItem("home",
-                        box(title = "Correlation Analysis between Daily Confirmed and Daily Deaths Cases in Malaysia",
-                            background = "green", solidHeader = TRUE,
-                            collapsible = TRUE,
-                            plotlyOutput("correlationGraph"))),
-              ),
-              
-              
-              
+                       plotlyOutput("linestate")),
+             
       ),
       
       tabItem("state",
@@ -654,10 +651,15 @@ server <- function(input,output){
       geom_line(data = daily_state_cases_table,aes(x = Date,y = `WP_Putrajaya`, group = 1), color="linen") +
       geom_line(data = daily_state_cases_table,aes(x = Date,y = `WP_Labuan`, group = 1), color="rosybrown4") +
       geom_point()+
+      ggtitle("Daily State Confirmation Cases") +
       theme_classic()+
       scale_x_date(labels = date_format("%m-%Y"))+
       xlab("Day")+
       ylab("State")+
+      
+      
+      
+      
       
       scale_colour_manual(values = color_group)+
       labs(colour = "State")
@@ -679,12 +681,17 @@ server <- function(input,output){
   # correlation analysis
   output$correlationGraph <- renderPlotly({
     
-    ggscatter(data = datatable,x = aes(x=`Daily New Cases`, y =`Daily Deaths`), 
+    ggscatter(data = datatable,x='Daily New Cases', y ='Daily Deaths', 
+              colour = "Cylinders", #for the points
               add = "reg.line",                               
-              conf.int = TRUE,                                  
+              conf.int = TRUE,
+              cor.coef = TRUE,
+              cor.method = "pearson",
+              xlab = "Daily New Cases",
+              ylab = "Daily Deaths",
               add.params = list(color = "blue",
-                                fill = "lightgray"))+
-      stat_cor(method = "pearson", label.x = 3, label.y = 30) 
+                                fill = "lightgray")) #for the line
+      
     
   })
   
