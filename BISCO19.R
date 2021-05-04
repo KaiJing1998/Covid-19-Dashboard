@@ -9,6 +9,7 @@ library(reshape2)
 library(plotly)
 library(scales)
 library(ggpubr)
+
 #library(maps)
 
 #Malaysia <- map_data("world") %>% filter(region == "Malaysia")
@@ -668,9 +669,10 @@ server <- function(input,output){
   
   #State Bar Graph (Total Cases)
   output$stateBarGraph <- renderPlotly({
-    stateBar <- ggplot(data = state_cases_table, aes(x= `State`, y = `Confirmed`)) +
-      geom_bar(stat = "identity", color = "bisque3", fill="blue4" )+
+    stateBar <- ggplot(data = state_cases_table, aes(x= reorder(`State`, - `Confirmed`), y = `Confirmed`, fill = `State`)) +
+      geom_bar(stat = "identity", color = "bisque3" )+
       theme()+
+      xlab("State in Malaysia")+
       ylab("Total Confirmed Cases")
     
     stateBar
@@ -682,16 +684,18 @@ server <- function(input,output){
   output$correlationGraph <- renderPlotly({
     
     ggscatter(data = datatable,x='Daily New Cases', y ='Daily Deaths', 
-              colour = "Cylinders", #for the points
-              add = "reg.line",                               
+              color = "red",
+              add = "reg.line",
+              smooth = TRUE,
               conf.int = TRUE,
               cor.coef = TRUE,
               cor.method = "pearson",
               xlab = "Daily New Cases",
               ylab = "Daily Deaths",
               add.params = list(color = "blue",
-                                fill = "lightgray")) #for the line
-      
+                                fill = "lightgray")
+              ) #for the line
+    
     
   })
   
@@ -703,9 +707,9 @@ server <- function(input,output){
   
   # Selangor
   output$selangorDistrict <- renderPlotly({
-    selangorDist <- ggplot(data= selangor_district, aes(x= `District`, y = `14 Day Total`))+
+    selangorDist <- ggplot(data= selangor_district, aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "darkred")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     selangorDist
     
@@ -716,9 +720,9 @@ server <- function(input,output){
   
   # Kuala Lumpur 
   output$kualaLumpurDistrict <- renderPlotly({
-    klDist <- ggplot(data=kualalumpur_district , aes(x= `District`, y = `14 Day Total`))+
+    klDist <- ggplot(data=kualalumpur_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "darksalmon")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     klDist
     
@@ -729,9 +733,9 @@ server <- function(input,output){
   #Johor
   
   output$johorDistrict <- renderPlotly({
-    johorDist <- ggplot(data=johor_district , aes(x= `District`, y = `14 Day Total`))+
+    johorDist <- ggplot(data=johor_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "darkslategray4")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     johorDist
     
@@ -742,9 +746,9 @@ server <- function(input,output){
   #Perlis
   
   output$perlisDistrict <- renderPlotly({
-    perlisDist <- ggplot(data=perlis_district , aes(x= `District`, y = `14 Day Total`))+
+    perlisDist <- ggplot(data=perlis_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "deepskyblue")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     perlisDist
     
@@ -755,9 +759,9 @@ server <- function(input,output){
   #Penang
   
   output$penangDistrict <- renderPlotly({
-    penangDist <- ggplot(data=penang_district , aes(x= `District`, y = `14 Day Total`))+
+    penangDist <- ggplot(data=penang_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "cadetblue")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     penangDist
     
@@ -768,9 +772,9 @@ server <- function(input,output){
   #Kedah
   
   output$kedahDistrict <- renderPlotly({
-    kedahDist <- ggplot(data=kedah_district , aes(x= `District`, y = `14 Day Total`))+
+    kedahDist <- ggplot(data=kedah_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "antiquewhite3")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     kedahDist
     
@@ -781,9 +785,9 @@ server <- function(input,output){
   #Kelantan
   
   output$kelantanDistrict <- renderPlotly({
-    kelantanDist <- ggplot(data=kelantan_district , aes(x= `District`, y = `14 Day Total`))+
+    kelantanDist <- ggplot(data=kelantan_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "coral")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     kelantanDist
     
@@ -794,9 +798,9 @@ server <- function(input,output){
   #Terengganu
   
   output$terengganuDistrict <- renderPlotly({
-    terengganuDist <- ggplot(data=terengganu_district , aes(x= `District`, y = `14 Day Total`))+
+    terengganuDist <- ggplot(data=terengganu_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "azure3")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     terengganuDist
     
@@ -807,9 +811,9 @@ server <- function(input,output){
   #Melaka
   
   output$melakaDistrict <- renderPlotly({
-    melakaDist <- ggplot(data=melaka_district , aes(x= `District`, y = `14 Day Total`))+
+    melakaDist <- ggplot(data=melaka_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "darkseagreen2")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
     
     melakaDist
     
@@ -820,9 +824,10 @@ server <- function(input,output){
   #Pahang
   
   output$pahangDistrict <- renderPlotly({
-    pahangDist <- ggplot(data=pahang_district , aes(x= `District`, y = `14 Day Total`))+
+    pahangDist <- ggplot(data=pahang_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "lightcoral")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
+      
     
     pahangDist
     
@@ -833,9 +838,10 @@ server <- function(input,output){
   #Labuan
   
   output$labuanDistrict <- renderPlotly({
-    labuanDist <- ggplot(data=labuan_district , aes(x= `District`, y = `14 Day Total`))+
+    labuanDist <- ggplot(data=labuan_district , aes(x= `District`, y = `14 Day Total`,fill = `District`))+
       geom_bar(stat ="identity", color = "lightcyan3")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
+      
     
     labuanDist
     
@@ -846,9 +852,10 @@ server <- function(input,output){
   #Putrajaya
   
   output$putrajayaDistrict <- renderPlotly({
-    putrajayaDist <- ggplot(data=putrajaya_district , aes(x= `District`, y = `14 Day Total`))+
+    putrajayaDist <- ggplot(data=putrajaya_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "mediumpurple4")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
+      
     
     putrajayaDist
     
@@ -859,9 +866,10 @@ server <- function(input,output){
   #Negeri Sembilan
   
   output$nsembilanDistrict <- renderPlotly({
-    nsembilanDist <- ggplot(data=nsembilan_district , aes(x= `District`, y = `14 Day Total`))+
+    nsembilanDist <- ggplot(data=nsembilan_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "lightslategrey")+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
+      
     
     nsembilanDist
     
@@ -872,10 +880,10 @@ server <- function(input,output){
   #Sabah
   
   output$sabahDistrict <- renderPlotly({
-    sabahDist <- ggplot(data=sabah_district , aes(x= `District`, y = `14 Day Total`))+
+    sabahDist <- ggplot(data=sabah_district , aes(x= `District`, y = `14 Day Total`, fill = `District`))+
       geom_bar(stat ="identity", color = "navyblue")+
-      theme(axis.text.x=element_text(angle=90))+
-      theme_minimal()
+      theme(axis.text.x=element_text(angle=90))
+     
     
     sabahDist
     
@@ -886,10 +894,10 @@ server <- function(input,output){
   #Sarawak
   
   output$sarawakDistrict <- renderPlotly({
-    sarawakDist <- ggplot(data=sarawak_district , aes(x= `District`, y = `14 Day Total`))+
-      geom_bar(stat = "identity", color = "blue")+
-      theme(axis.text.x =element_text(angle=90,hjust=1,vjust=0.5))+
-      theme_minimal()
+    sarawak_district$District <- sarawak_district$District
+    sarawakDist <- ggplot(data=sarawak_district , aes(x= District, y = `14 Day Total`, fill = District))+
+      geom_bar(stat = "identity")+
+      theme(axis.text.x = element_text(angle=90))
     
     sarawakDist
     
