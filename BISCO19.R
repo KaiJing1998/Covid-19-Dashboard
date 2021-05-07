@@ -10,12 +10,6 @@ library(plotly)
 library(scales)
 library(ggpubr)
 
-#library(maps)
-
-#Malaysia <- map_data("world") %>% filter(region == "Malaysia")
-
-#data <- world.cities %>% filter(country.etc == "Malaysia")
-
 
 #Connect to database
 mydb <- dbConnect(MySQL(),
@@ -238,11 +232,15 @@ ui <- dashboardPage(
    
     
     fluidRow(
+      "  updated",
+      em("May 6, 2021"),
+      br(),
+      
       # A static value Box
-      valueBox("3,332","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("15","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("1,943","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("28,093","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("3,551","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("19","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("2,709","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("33,762","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
     ),
    
     
@@ -682,6 +680,10 @@ server <- function(input,output){
   
   # correlation analysis
   output$correlationGraph <- renderPlotly({
+ 
+   #ggplot(datatable, aes(x=`Daily New Cases`, y=`Daily Deaths`)) + 
+   #     geom_point(color='#2980B9', size = 1) + 
+    #   geom_smooth(method=lm, se=FALSE, fullrange=TRUE, color='#2C3E50')
     
     ggscatter(data = datatable,x='Daily New Cases', y ='Daily Deaths', 
               color = "red",
@@ -694,9 +696,9 @@ server <- function(input,output){
               ylab = "Daily Deaths",
               add.params = list(color = "blue",
                                 fill = "lightgray")
-              ) #for the line
-    
-    
+    )
+
+   
   })
   
   # State Cases in Daily 
