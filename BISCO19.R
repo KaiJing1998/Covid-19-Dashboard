@@ -232,7 +232,8 @@ ui <- dashboardPage(
    
     
     fluidRow(
-      "  updated",
+      fluidPage(
+      "updated",
       em("May 6, 2021"),
       br(),
       
@@ -241,6 +242,7 @@ ui <- dashboardPage(
       valueBox("19","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
       valueBox("2,709","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
       valueBox("33,762","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      )
     ),
    
     
