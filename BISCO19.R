@@ -234,14 +234,14 @@ ui <- dashboardPage(
     fluidRow(
       fluidPage(
       "updated",
-      em("May 6, 2021"),
+      em("May 16, 2021"),
       br(),
       
       # A static value Box
-      valueBox("3,551","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("19","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("2,709","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("33,762","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("3,780","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("36","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("3,990","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("41,889","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
       )
     ),
    
@@ -294,7 +294,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("State in Malaysia"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 dataTableOutput("state_cases")
               )
@@ -304,7 +304,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kuala Lumpur"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("kualaLumpurDistrict"),
                 br(),
@@ -316,7 +316,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Selangor"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("selangorDistrict"),
                 br(),
@@ -328,7 +328,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Johor"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("johorDistrict"),
                 br(),
@@ -340,7 +340,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Perlis"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("perlisDistrict"),
                 br(),
@@ -352,7 +352,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Penang"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("penangDistrict"),
                 br(),
@@ -364,7 +364,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kedah"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("kedahDistrict"),
                 br(),
@@ -376,7 +376,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kelantan"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("kelantanDistrict"),
                 br(),
@@ -388,7 +388,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Terengganu"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("terengganuDistrict"),
                 br(),
@@ -400,7 +400,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Melaka"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("melakaDistrict"),
                 br(),
@@ -412,7 +412,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Pahang"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("pahangDistrict"),
                 br(),
@@ -424,7 +424,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Labuan"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("labuanDistrict"),
                 br(),
@@ -437,7 +437,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Putrajaya"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("putrajayaDistrict"),
                 br(),
@@ -449,7 +449,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Negeri Sembilan"),
                 "updated",
-                em("April 20 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("nsembilanDistrict"),
                 br(),
@@ -461,7 +461,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Sabah"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("sabahDistrict"),
                 br(),
@@ -473,7 +473,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Sarawak"),
                 "updated",
-                em("April 20, 2021"),
+                em("May 16, 2021"),
                 br(),
                 plotlyOutput("sarawakDistrict"),
                 br(),
@@ -618,7 +618,7 @@ server <- function(input,output){
     
     ggplot(data=datatable, aes(x= Date, y=`Daily Deaths`, group = 1))+
       geom_line()+
-      geom_point(color = "turquoise")+
+      geom_point(color = "blue")+
       theme_bw()+
       scale_x_date(labels = date_format("%m-%Y"))+
       xlab("State")+

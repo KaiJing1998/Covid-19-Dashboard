@@ -5,8 +5,8 @@ account: bisco-19
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3957020
-bundleId: 4568706
+bundleId: 4604045
 url: https://bisco-19.shinyapps.io/COVID19_Dashboard/
-when: 1620369123.97817
+when: 1621177941.98035
 asMultiple: FALSE
 asStatic: FALSE
