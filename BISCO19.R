@@ -234,14 +234,14 @@ ui <- dashboardPage(
     fluidRow(
       fluidPage(
       "updated",
-      em("May 16, 2021"),
+      em("May 22, 2021"),
       br(),
       
       # A static value Box
-      valueBox("3,780","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("36","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("3,990","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("41,889","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("6，320","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("50","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("4，694","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("53，682","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
       )
     ),
    
@@ -251,7 +251,7 @@ ui <- dashboardPage(
       tabItem("home",
               tabsetPanel(
                 tabPanel("Daily New Cases",plotlyOutput("lineChart2")),
-                tabPanel("Acive Cases",plotlyOutput("lineChart3")),
+                tabPanel("Active Cases",plotlyOutput("lineChart3")),
                 tabPanel("Total Cases",plotlyOutput("lineChart")),
                 type = "tab"
                 
