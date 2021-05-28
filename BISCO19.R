@@ -234,14 +234,14 @@ ui <- dashboardPage(
     fluidRow(
       fluidPage(
       "updated",
-      em("May 22, 2021"),
+      em("May 28, 2021"),
       br(),
       
       # A static value Box
-      valueBox("6，320","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("50","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("4，694","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
-      valueBox("53，682","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("7,857","New Cases", color = "red", width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("59","New Deaths", color = "olive",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("4,598","New Recovered", color = "light-blue",width = 3, icon = icon("arrow-alt-circle-up")),
+      valueBox("69,408","Active Cases", color = "navy", width = 3, icon = icon("arrow-alt-circle-up")),
       )
     ),
    
@@ -294,7 +294,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("State in Malaysia"),
                 "updated",
-                em("May 16, 2021"),
+                em("May 28, 2021"),
                 br(),
                 dataTableOutput("state_cases")
               )
@@ -303,8 +303,8 @@ ui <- dashboardPage(
       tabItem("kualalumpur",
               fluidPage(
                 h2("Kuala Lumpur"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("kualaLumpurDistrict"),
                 br(),
@@ -315,8 +315,8 @@ ui <- dashboardPage(
       tabItem("selangor",
               fluidPage(
                 h2("Selangor"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("selangorDistrict"),
                 br(),
@@ -327,8 +327,8 @@ ui <- dashboardPage(
       tabItem("johor",
               fluidPage(
                 h2("Johor"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("johorDistrict"),
                 br(),
@@ -339,8 +339,8 @@ ui <- dashboardPage(
       tabItem("perlis",
               fluidPage(
                 h2("Perlis"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("perlisDistrict"),
                 br(),
@@ -351,8 +351,8 @@ ui <- dashboardPage(
       tabItem("penang",
               fluidPage(
                 h2("Penang"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("penangDistrict"),
                 br(),
@@ -363,8 +363,8 @@ ui <- dashboardPage(
       tabItem("kedah",
               fluidPage(
                 h2("Kedah"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("kedahDistrict"),
                 br(),
@@ -375,8 +375,8 @@ ui <- dashboardPage(
       tabItem("kelantan",
               fluidPage(
                 h2("Kelantan"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("kelantanDistrict"),
                 br(),
@@ -387,8 +387,8 @@ ui <- dashboardPage(
       tabItem("terengganu",
               fluidPage(
                 h2("Terengganu"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("terengganuDistrict"),
                 br(),
@@ -399,8 +399,8 @@ ui <- dashboardPage(
       tabItem("melaka",
               fluidPage(
                 h2("Melaka"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("melakaDistrict"),
                 br(),
@@ -411,8 +411,8 @@ ui <- dashboardPage(
       tabItem("pahang",
               fluidPage(
                 h2("Pahang"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("pahangDistrict"),
                 br(),
@@ -423,8 +423,8 @@ ui <- dashboardPage(
       tabItem("labuan",
               fluidPage(
                 h2("Labuan"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("labuanDistrict"),
                 br(),
@@ -436,8 +436,8 @@ ui <- dashboardPage(
       tabItem("putrajaya",
               fluidPage(
                 h2("Putrajaya"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("putrajayaDistrict"),
                 br(),
@@ -448,8 +448,8 @@ ui <- dashboardPage(
       tabItem("negerisembilan",
               fluidPage(
                 h2("Negeri Sembilan"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("nsembilanDistrict"),
                 br(),
@@ -460,8 +460,8 @@ ui <- dashboardPage(
       tabItem("sabah",
               fluidPage(
                 h2("Sabah"),
-                "updated",
-                em("May 16, 2021"),
+                #"updated",
+                #em("May 16, 2021"),
                 br(),
                 plotlyOutput("sabahDistrict"),
                 br(),
