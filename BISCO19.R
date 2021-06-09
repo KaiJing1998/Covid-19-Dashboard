@@ -251,7 +251,7 @@ ui <- dashboardPage(
     fluidRow(
       fluidPage(
       "updated",
-      em("June 5, 2021"),
+      em("June 8, 2021"),
       br(),
       
       # A static value Box
