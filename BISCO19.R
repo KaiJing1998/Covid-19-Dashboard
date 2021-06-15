@@ -173,40 +173,6 @@ rs32 = dbSendQuery(mydb, "SELECT * FROM SARAWAK")
 sarawak = fetch (rs32, n= -1)
 
 
-#View(state_cases_table)
-#View(datatable)
-#View(daily_state_cases_table)
-#View(selangor_district)
-#View(selangor)
-#View(kualalumpur_district)
-#View(kualalumpur)
-#View(johor_district)
-#View(johor)
-#View(perlis_district)
-#View(perlis)
-#View(penang_district)
-#View(penang)
-#View(kedah_district)
-#View(kedah)
-#View(kelantan_district)
-#View(kelantan)
-#View(terengganu_district)
-#View(terengganu)
-#View(melaka_district)
-#View(melaka)
-#View(pahang_district)
-#View(pahang)
-#View(labuan_district)
-#View(labuan)
-#View(putrajaya_district)
-#View(putrajaya)
-#View(nsembilan_district)
-#View(nsembilan)
-#View(sabah_district)
-#View(sabah)
-#View(sarawak_district)
-#View(sarawak)
-
 # Avoid all scientific notation
 options(scipen=999)
 
@@ -251,7 +217,7 @@ ui <- dashboardPage(
     fluidRow(
       fluidPage(
       "updated",
-      em("June 8, 2021"),
+      em("June 14, 2021"),
       br(),
       
       # A static value Box
@@ -311,7 +277,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("State in Malaysia"),
                 "updated",
-                em("May 28, 2021"),
+                em("June 14, 2021"),
                 br(),
                 dataTableOutput("state_cases")
               )
@@ -321,7 +287,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kuala Lumpur"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("kualaLumpurDistrict"),
                 br(),
@@ -333,7 +299,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Selangor"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("selangorDistrict"),
                 br(),
@@ -345,7 +311,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Johor"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("johorDistrict"),
                 br(),
@@ -357,7 +323,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Perlis"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("perlisDistrict"),
                 br(),
@@ -369,7 +335,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Penang"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("penangDistrict"),
                 br(),
@@ -381,7 +347,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kedah"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("kedahDistrict"),
                 br(),
@@ -393,7 +359,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Kelantan"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("kelantanDistrict"),
                 br(),
@@ -405,7 +371,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Terengganu"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("terengganuDistrict"),
                 br(),
@@ -417,7 +383,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Melaka"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("melakaDistrict"),
                 br(),
@@ -429,7 +395,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Pahang"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("pahangDistrict"),
                 br(),
@@ -441,7 +407,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Labuan"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("labuanDistrict"),
                 br(),
@@ -454,7 +420,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Putrajaya"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("putrajayaDistrict"),
                 br(),
@@ -466,7 +432,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Negeri Sembilan"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("nsembilanDistrict"),
                 br(),
@@ -478,7 +444,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Sabah"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("sabahDistrict"),
                 br(),
@@ -490,7 +456,7 @@ ui <- dashboardPage(
               fluidPage(
                 h2("Sarawak"),
                 "updated",
-                em("May 16, 2021"),
+                em("June 14, 2021"),
                 br(),
                 plotlyOutput("sarawakDistrict"),
                 br(),
